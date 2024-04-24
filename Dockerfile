@@ -1,11 +1,11 @@
-FROM golang:alpine
+FROM golang:1.21-alpine3.18
 
 WORKDIR /app
-COPY . .
+COPY ./go.* ./
 
 RUN go mod download
-
-RUN go build -o /app/hello
+COPY . .
+# RUN go build -o /app/hello
 EXPOSE 8000
 
-CMD [ "./hello" ]
+CMD [ "go","run","main.go" ]
